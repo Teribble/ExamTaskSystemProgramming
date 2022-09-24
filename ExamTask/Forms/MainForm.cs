@@ -15,11 +15,15 @@ namespace ExamTask
     {
         public ForbiddenDictionary ForbiddenDictionary;
 
+        public SearchFiles files;
+
         public MainForm()
         {
             InitializeComponent();
 
             ForbiddenDictionary = new ForbiddenDictionary();
+
+            files = new SearchFiles();
         }
 
         private void OnDownloadButtonClick(object sender, EventArgs e)

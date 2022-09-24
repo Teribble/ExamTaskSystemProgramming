@@ -40,6 +40,8 @@
             this.label2 = new System.Windows.Forms.Label();
             this.DownloadButton = new System.Windows.Forms.Button();
             this.ForbiddenListBox = new System.Windows.Forms.ListBox();
+            this.progressBar2 = new System.Windows.Forms.ProgressBar();
+            this.button1 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -178,11 +180,31 @@
             this.ForbiddenListBox.TabIndex = 0;
             this.ForbiddenListBox.EnabledChanged += new System.EventHandler(this.EnabledChangedForbiddenListBox);
             // 
+            // progressBar2
+            // 
+            this.progressBar2.Location = new System.Drawing.Point(303, 259);
+            this.progressBar2.Name = "progressBar2";
+            this.progressBar2.Size = new System.Drawing.Size(488, 39);
+            this.progressBar2.TabIndex = 5;
+            // 
+            // button1
+            // 
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.button1.Location = new System.Drawing.Point(435, 361);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(188, 26);
+            this.button1.TabIndex = 5;
+            this.button1.Text = "Добавить";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 466);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.progressBar2);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox1);
@@ -214,6 +236,8 @@
         private System.Windows.Forms.TextBox PathTextBox;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button DownloadButton;
+        private System.Windows.Forms.ProgressBar progressBar2;
+        private System.Windows.Forms.Button button1;
     }
 }
 
