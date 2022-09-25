@@ -40,11 +40,22 @@
             this.label2 = new System.Windows.Forms.Label();
             this.DownloadButton = new System.Windows.Forms.Button();
             this.ForbiddenListBox = new System.Windows.Forms.ListBox();
-            this.progressBar2 = new System.Windows.Forms.ProgressBar();
-            this.button1 = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.ButtonSearch = new System.Windows.Forms.Button();
+            this.FileCountLabel = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.ForbiddenCountLabel = new System.Windows.Forms.Label();
+            this.ButtonSearchWords = new System.Windows.Forms.Button();
+            this.ButtonOpenFolder = new System.Windows.Forms.Button();
+            this.ProcessedFilesLabel = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.PaskudaCountLabel = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            this.groupBox4.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -180,31 +191,139 @@
             this.ForbiddenListBox.TabIndex = 0;
             this.ForbiddenListBox.EnabledChanged += new System.EventHandler(this.EnabledChangedForbiddenListBox);
             // 
-            // progressBar2
+            // label3
             // 
-            this.progressBar2.Location = new System.Drawing.Point(303, 259);
-            this.progressBar2.Name = "progressBar2";
-            this.progressBar2.Size = new System.Drawing.Size(488, 39);
-            this.progressBar2.TabIndex = 5;
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(6, 27);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(163, 20);
+            this.label3.TabIndex = 4;
+            this.label3.Text = "Найденные файлы: ";
             // 
-            // button1
+            // groupBox4
             // 
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button1.Location = new System.Drawing.Point(435, 361);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(188, 26);
-            this.button1.TabIndex = 5;
-            this.button1.Text = "Добавить";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.groupBox4.Controls.Add(this.PaskudaCountLabel);
+            this.groupBox4.Controls.Add(this.label7);
+            this.groupBox4.Controls.Add(this.ProcessedFilesLabel);
+            this.groupBox4.Controls.Add(this.ButtonOpenFolder);
+            this.groupBox4.Controls.Add(this.ButtonSearchWords);
+            this.groupBox4.Controls.Add(this.label6);
+            this.groupBox4.Controls.Add(this.ForbiddenCountLabel);
+            this.groupBox4.Controls.Add(this.label4);
+            this.groupBox4.Controls.Add(this.ButtonSearch);
+            this.groupBox4.Controls.Add(this.FileCountLabel);
+            this.groupBox4.Controls.Add(this.label3);
+            this.groupBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.groupBox4.Location = new System.Drawing.Point(526, 61);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(262, 236);
+            this.groupBox4.TabIndex = 5;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "Информация о файлах";
+            // 
+            // ButtonSearch
+            // 
+            this.ButtonSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.ButtonSearch.Location = new System.Drawing.Point(10, 54);
+            this.ButtonSearch.Name = "ButtonSearch";
+            this.ButtonSearch.Size = new System.Drawing.Size(119, 25);
+            this.ButtonSearch.TabIndex = 6;
+            this.ButtonSearch.Text = "Найти .txt файлы";
+            this.ButtonSearch.UseVisualStyleBackColor = true;
+            this.ButtonSearch.Click += new System.EventHandler(this.OnButtonSearchClick);
+            // 
+            // FileCountLabel
+            // 
+            this.FileCountLabel.AutoSize = true;
+            this.FileCountLabel.Location = new System.Drawing.Point(164, 27);
+            this.FileCountLabel.Name = "FileCountLabel";
+            this.FileCountLabel.Size = new System.Drawing.Size(18, 20);
+            this.FileCountLabel.TabIndex = 5;
+            this.FileCountLabel.Text = "0";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(6, 87);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(159, 20);
+            this.label4.TabIndex = 7;
+            this.label4.Text = "Найденные файлы:";
+            // 
+            // ForbiddenCountLabel
+            // 
+            this.ForbiddenCountLabel.AutoSize = true;
+            this.ForbiddenCountLabel.Location = new System.Drawing.Point(171, 87);
+            this.ForbiddenCountLabel.Name = "ForbiddenCountLabel";
+            this.ForbiddenCountLabel.Size = new System.Drawing.Size(18, 20);
+            this.ForbiddenCountLabel.TabIndex = 8;
+            this.ForbiddenCountLabel.Text = "0";
+            // 
+            // ButtonSearchWords
+            // 
+            this.ButtonSearchWords.Enabled = false;
+            this.ButtonSearchWords.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.ButtonSearchWords.Location = new System.Drawing.Point(10, 141);
+            this.ButtonSearchWords.Name = "ButtonSearchWords";
+            this.ButtonSearchWords.Size = new System.Drawing.Size(172, 25);
+            this.ButtonSearchWords.TabIndex = 9;
+            this.ButtonSearchWords.Text = "Найти паскудные файлы";
+            this.ButtonSearchWords.UseVisualStyleBackColor = true;
+            this.ButtonSearchWords.Click += new System.EventHandler(this.OnButtonSearchWordsClick);
+            // 
+            // ButtonOpenFolder
+            // 
+            this.ButtonOpenFolder.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.ButtonOpenFolder.Location = new System.Drawing.Point(10, 192);
+            this.ButtonOpenFolder.Name = "ButtonOpenFolder";
+            this.ButtonOpenFolder.Size = new System.Drawing.Size(172, 25);
+            this.ButtonOpenFolder.TabIndex = 10;
+            this.ButtonOpenFolder.Text = "Открыть папку";
+            this.ButtonOpenFolder.UseVisualStyleBackColor = true;
+            this.ButtonOpenFolder.Click += new System.EventHandler(this.OnButtonOpenFolderClick);
+            // 
+            // ProcessedFilesLabel
+            // 
+            this.ProcessedFilesLabel.AutoSize = true;
+            this.ProcessedFilesLabel.Location = new System.Drawing.Point(196, 169);
+            this.ProcessedFilesLabel.Name = "ProcessedFilesLabel";
+            this.ProcessedFilesLabel.Size = new System.Drawing.Size(18, 20);
+            this.ProcessedFilesLabel.TabIndex = 12;
+            this.ProcessedFilesLabel.Text = "0";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(6, 169);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(184, 20);
+            this.label6.TabIndex = 11;
+            this.label6.Text = "Обработанные файлы:";
+            // 
+            // PaskudaCountLabel
+            // 
+            this.PaskudaCountLabel.AutoSize = true;
+            this.PaskudaCountLabel.Location = new System.Drawing.Point(171, 107);
+            this.PaskudaCountLabel.Name = "PaskudaCountLabel";
+            this.PaskudaCountLabel.Size = new System.Drawing.Size(18, 20);
+            this.PaskudaCountLabel.TabIndex = 14;
+            this.PaskudaCountLabel.Text = "0";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(6, 107);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(137, 20);
+            this.label7.TabIndex = 13;
+            this.label7.Text = "Найдено паскуд:";
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 466);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.progressBar2);
+            this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox1);
@@ -218,6 +337,8 @@
             this.groupBox3.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            this.groupBox4.ResumeLayout(false);
+            this.groupBox4.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -236,8 +357,18 @@
         private System.Windows.Forms.TextBox PathTextBox;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button DownloadButton;
-        private System.Windows.Forms.ProgressBar progressBar2;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.Label FileCountLabel;
+        private System.Windows.Forms.Button ButtonSearch;
+        private System.Windows.Forms.Label ForbiddenCountLabel;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Button ButtonSearchWords;
+        private System.Windows.Forms.Button ButtonOpenFolder;
+        private System.Windows.Forms.Label ProcessedFilesLabel;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label PaskudaCountLabel;
+        private System.Windows.Forms.Label label7;
     }
 }
 

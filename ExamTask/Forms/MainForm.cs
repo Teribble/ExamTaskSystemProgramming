@@ -1,13 +1,10 @@
-﻿using System;
+﻿using ExamTask.Forms;
+using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.IO;
-using System.Linq;
-using System.Text;
+using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using File = System.IO.File;
 
 namespace ExamTask
 {
@@ -15,7 +12,49 @@ namespace ExamTask
     {
         public ForbiddenDictionary ForbiddenDictionary;
 
-        public SearchFiles files;
+        public SearchFiles AllFiles;
+
+        public SearchWord AllWords;
+
+        public List<Report> Reports;
+
+        public void OnSearchFilesHandle(int k)
+        {
+            FileCountLabel.Invoke(new Action(() =>
+            {
+                FileCountLabel.Text = Convert.ToString(k);
+            }));
+        }
+
+        public void OnForbiddenCountLabelHandler(int x)
+        {
+            ForbiddenCountLabel.Invoke(new Action(() =>
+            {
+
+                ForbiddenCountLabel.Text = Convert.ToString(x);
+
+            }));
+        }
+
+        public void OnProcessFilesCounterHandler(int x)
+        {
+            ForbiddenCountLabel.Invoke(new Action(() =>
+            {
+
+                ProcessedFilesLabel.Text = Convert.ToString(x);
+
+            }));
+        }
+
+        public void OnProcessWordsCounterHandler(int x)
+        {
+            ForbiddenCountLabel.Invoke(new Action(() =>
+            {
+
+                PaskudaCountLabel.Text = Convert.ToString(x);
+
+            }));
+        }
 
         public MainForm()
         {
@@ -23,8 +62,31 @@ namespace ExamTask
 
             ForbiddenDictionary = new ForbiddenDictionary();
 
-            files = new SearchFiles();
+            AllFiles = new SearchFiles();
+
+            AllFiles.OnSearch += OnSearchFilesHandle;
+
+            Reports = new List<Report>();
+
+            ResetWords();
         }
+
+        public void ResetWords()
+        {
+            AllWords = new SearchWord(ForbiddenDictionary.ForbiddenWords);
+
+            AllWords.ForbiddenCounterer += OnForbiddenCountLabelHandler;
+
+            AllWords.OnProcFile += OnProcessFilesCounterHandler;
+
+            AllWords.OnProcWord += OnProcessWordsCounterHandler;
+
+            ForbiddenCountLabel.Text = "0";
+
+            PaskudaCountLabel.Text = "0";
+        }
+
+
 
         private void OnDownloadButtonClick(object sender, EventArgs e)
         {
@@ -76,9 +138,13 @@ namespace ExamTask
 
         private void AddButtonClick(object sender, EventArgs e)
         {
-            ForbiddenListBox.Items.Add(AddTextBox.Text);
+            ForbiddenListBox.Items.Add(AddTextBox.Text.ToLower());
+
+            ForbiddenDictionary.ForbiddenWords.Add(AddTextBox.Text);
 
             ForbiddenListBox.Enabled = true;
+
+            AddTextBox.Clear();
         }
 
         private void DeleteButtonClick(object sender, EventArgs e)
@@ -112,7 +178,7 @@ namespace ExamTask
             if (ForbiddenListBox.Items.Count is 0)
             {
 
-            }    
+            }
             else
             {
                 ForbiddenDictionary.ForbiddenWords.Clear();
@@ -121,6 +187,39 @@ namespace ExamTask
 
                 ForbiddenListBox.Enabled = false;
             }
+        }
+
+        private void OnButtonSearchClick(object sender, EventArgs e)
+        {
+            Task.Run(() =>
+            {
+                AllFiles.SearchTxtFiles();
+
+                MessageBox.Show("Поиск файлов завершен");
+
+                ButtonSearchWords.Invoke(new Action(() =>
+                {
+                    ButtonSearchWords.Enabled = true;
+                }));
+            });
+        }
+
+        private void OnButtonSearchWordsClick(object sender, EventArgs e)
+        {
+            ResetWords();
+
+            foreach (var file in AllFiles.AllFiles)
+            {
+                Task.Run(() =>
+                {
+                    AllWords.SearchWordsInFile(file);
+                });
+            }
+        }
+
+        private void OnButtonOpenFolderClick(object sender, EventArgs e)
+        {
+            Process.Start("explorer", @"..\..\ForbiddenFiles");
         }
     }
 }

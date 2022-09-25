@@ -21,7 +21,7 @@ namespace ExamTask
             {
                 using (StreamReader sr = new StreamReader(path))
                 {
-                    buffer = sr.ReadToEnd();
+                    buffer = sr.ReadToEnd().ToLower() ;
                 }
             }
 
